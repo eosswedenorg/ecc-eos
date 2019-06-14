@@ -1,0 +1,22 @@
+{
+    "name": "eosswedenorg/ecc-eos",
+    "description": "EOS ECC helper library",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Henrik Hautakoski",
+            "email": "henrik@eossweden.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ECCEOS\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "ext-gmp": "*",
+        "mdanter/ecc": "^0.5.2",
+        "bitwasp/buffertools": "^0.5.5"
+    }
+}
