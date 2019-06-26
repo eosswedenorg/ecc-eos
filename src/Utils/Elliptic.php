@@ -123,17 +123,10 @@ class Elliptic
     {
         for($i = 0; $i < 4; $i++) {
 
-            try {
-                $Qprim = self::recoverPublicKey($generator, $hash, $sig, $i);
+            $Qprim = self::recoverPublicKey($generator, $hash, $sig, $i);
 
-                if ($Qprim->cmp($Q) == 0) {
-                    return $i;
-                }
-            } catch(Exception $e) {
-
-                if ($e->getCode() != 1337) {
-                    throw $e;
-                }
+            if ($Qprim->cmp($Q) == 0) {
+                return $i;
             }
         }
 
