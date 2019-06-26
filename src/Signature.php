@@ -7,6 +7,7 @@ use ECCEOS\Serializer\SignatureSerializer;
 use ECCEOS\Utils\RecoverPublicKey;
 use BitWasp\Buffertools\Buffer;
 use BitWasp\Buffertools\Buffertools;
+use BitWasp\Buffertools\BufferInterface;
 use Mdanter\Ecc\Crypto\Signature\Signature as ECCSignature;
 
 use Exception;
@@ -96,6 +97,17 @@ class Signature
      */
     public function encode(): string
     {
+        return $this->_serializer->encode($this->toBuffer());
+    }
+
+    /**
+     * Convert signature data to buffer object.
+     *
+     * @return BufferInterface
+     * @throws Exception
+     */
+    public function toBuffer()
+    {
         $r = gmp_strval($this->_sig->getR(), 16);
         $s = gmp_strval($this->_sig->getS(), 16);
 
@@ -103,9 +115,7 @@ class Signature
         $i += 4;  // compressed
         $i += 27; // compact  //  24 or 27 :( forcing odd-y 2nd key candidate)
 
-        $data = Buffertools::concat(Buffer::int($i), Buffer::hex($r . $s));
-
-        return $this->_serializer->encode($data);
+        return Buffertools::concat(Buffer::int($i), Buffer::hex($r . $s));
     }
 
     /**
