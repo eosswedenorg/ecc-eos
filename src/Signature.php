@@ -2,9 +2,7 @@
 
 namespace ECCEOS;
 
-use GMP;
 use ECCEOS\Serializer\SignatureSerializer;
-use ECCEOS\Utils\RecoverPublicKey;
 use ECCEOS\Utils\Elliptic;
 use BitWasp\Buffertools\Buffer;
 use BitWasp\Buffertools\Buffertools;
@@ -68,7 +66,7 @@ class Signature
     public function recoverPublicKey(string $data)
     {
         $hash = Factory::calculateSignatureHash($data);
-        $point = RecoverPublicKey::recover(Factory::getSecp256k1(),
+        $point = Elliptic::recoverPublicKey(Factory::getSecp256k1(),
             $hash, $this->_sig, $this->_recoverParam);
 
         return new PublicKey($point);
@@ -158,7 +156,7 @@ class Signature
         // Calculate recover parameter
         $ecPriv = Factory::createPrivateKey($key->getSecret());
         $Q = $ecPriv->getPublicKey()->getPoint();
-        $param = RecoverPublicKey::calculateParam($generator, $hash, $this->_sig, $Q);
+        $param = Elliptic::calculateRecoverParam($generator, $hash, $this->_sig, $Q);
 
         $this->_recoverParam = $param;
     }
