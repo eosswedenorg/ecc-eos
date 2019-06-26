@@ -5,6 +5,7 @@ namespace ECCEOS;
 use GMP;
 use ECCEOS\Serializer\SignatureSerializer;
 use ECCEOS\Utils\RecoverPublicKey;
+use ECCEOS\Utils\Elliptic;
 use BitWasp\Buffertools\Buffer;
 use BitWasp\Buffertools\Buffertools;
 use BitWasp\Buffertools\BufferInterface;
@@ -138,14 +139,21 @@ class Signature
     {
         $generator = Factory::getSecp256k1();
 
-        // Hash data using private key
-        $hash = Factory::calculateSignatureHash($data);
-
         $key = $generator->getPrivateKeyFrom($key->getGMP());
 
-        // Generate the random K
-        $K = Factory::getRNG($key, $hash)->generate($generator->getOrder());
-        $this->_sig = Factory::getSigner()->sign($key, $hash, $K);
+        // Find canonical signature.
+        $i = 0;
+        do {
+            // Hash data (append $i to data each loop to change the signature)
+            $hash = Factory::calculateSignatureHash($data . ++$i);
+
+            // Generate the random K
+            $K = Factory::getRNG($key, $hash)->generate($generator->getOrder());
+
+            // Create signature.
+            $this->_sig = Factory::getSigner()->sign($key, $hash, $K);
+
+        } while (Elliptic::isCanonical($this->_sig) === false);
 
         // Calculate recover parameter
         $ecPriv = Factory::createPrivateKey($key->getSecret());
