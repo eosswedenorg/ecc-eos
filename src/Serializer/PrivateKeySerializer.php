@@ -77,7 +77,8 @@ class PrivateKeySerializer implements SerializerInterface
         }
 
         // Validate version.
-        if ($data->slice(0, 1)->getInt() === self::VERSION) {
+        $version = (int) $data->slice(0, 1)->getInt();
+        if ($version !== self::VERSION) {
             throw new InvalidArgumentException("Version does not match");
         }
 
