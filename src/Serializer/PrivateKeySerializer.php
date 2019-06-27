@@ -6,7 +6,7 @@ namespace ECCEOS\Serializer;
 use ECCEOS\Checksum\Algorithm\Sha256Double;
 use ECCEOS\Checksum\Checksum;
 use ECCEOS\Utils\Base58;
-use ECCEOS\InvalidChecksumException;
+use ECCEOS\Checksum\InvalidChecksumException;
 
 use BitWasp\Buffertools\Buffer;
 use BitWasp\Buffertools\BufferInterface;

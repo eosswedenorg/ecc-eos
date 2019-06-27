@@ -4,8 +4,8 @@ namespace ECCEOS\Serializer;
 
 use ECCEOS\Checksum\Algorithm\Ripemd160;
 use ECCEOS\Checksum\Checksum;
+use ECCEOS\Checksum\InvalidChecksumException;
 use ECCEOS\Utils\Base58;
-use ECCEOS\InvalidChecksumException;
 
 use BitWasp\Buffertools\Buffer;
 use BitWasp\Buffertools\BufferInterface;
