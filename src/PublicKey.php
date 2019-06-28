@@ -40,7 +40,7 @@ class PublicKey
         if (is_string($data)) {
             $data = $this->_serializer->decode($data);
             $pointSerializer = new CompressedPointSerializer($math);
-            $point = $pointSerializer->unserialize($generator->getCurve(), $data->getBinary());
+            $point = $pointSerializer->unserialize($generator->getCurve(), $data->getHex());
         } else if ($data instanceof PointInterface) {
             $point = $data;
         } else {
