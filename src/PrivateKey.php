@@ -28,7 +28,7 @@ class PrivateKey
     {
         $this->_serializer = new PrivateKeySerializer();
 
-        if ($data == null) {
+        if ($data === null) {
             $data = gmp_init(0, 10);
         }
 
