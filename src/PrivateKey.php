@@ -8,6 +8,7 @@ use ECCEOS\Serializer\PrivateKeySerializer;
 use BitWasp\Buffertools\Buffer;
 use Mdanter\Ecc\Crypto\Key\PrivateKey as ECCPrivateKey;
 
+use ECCEOS\Checksum\InvalidChecksumException;
 use InvalidArgumentException;
 use Exception;
 
