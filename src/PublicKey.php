@@ -5,6 +5,7 @@ namespace ECCEOS;
 use GMP;
 use BitWasp\Buffertools\Buffer;
 use ECCEOS\Serializer\PublicKeySerializer;
+use ECCEOS\Checksum\InvalidChecksumException;
 use Mdanter\Ecc\Crypto\Key\PublicKey as ECCPublicKey;
 
 use InvalidArgumentException;
