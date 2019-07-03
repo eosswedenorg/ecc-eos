@@ -69,16 +69,33 @@ class Factory
         return new SignHasher('sha256', self::getMathAdapter());
     }
 
+    /**
+     * @param $data
+     * @return GMP
+     */
     static public function calculateSignatureHash($data) : GMP
     {
         return self::getSignHasher()->makeHash($data, self::getSecp256k1());
     }
 
+    /**
+     * Create Private key from secret number.
+     *
+     * @param GMP $secret
+     * @return PrivateKeyInterface
+     */
     static public function createPrivateKey(GMP $secret) : PrivateKeyInterface
     {
         return new ECCPrivateKey(self::getMathAdapter(), self::getSecp256k1(), $secret);
     }
 
+    /**
+     * Create public key from X,Y Coordinates.
+     *
+     * @param GMP $x
+     * @param GMP $y
+     * @return PublicKeyInterface
+     */
     static public function createPublicKey(GMP $x, GMP $y) : PublicKeyInterface
     {
         $G = self::getSecp256k1();
@@ -88,6 +105,11 @@ class Factory
         return new ECCPublicKey($M, $G, $point);
     }
 
+    /**
+     * Set debug mode
+     *
+     * @param bool $value
+     */
     static public function setDebug(bool $value)
     {
         self::$_debug = $value;
