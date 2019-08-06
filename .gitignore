@@ -1,3 +1,6 @@
 /vendor/
 .idea/
+
+# PHP Unit
+/coverage/
 .phpunit.result.cache
