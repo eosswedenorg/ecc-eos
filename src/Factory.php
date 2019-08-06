@@ -120,8 +120,10 @@ class Factory
      */
     static public function setDebug(bool $value)
     {
-        self::$_debug = $value;
-        $adapter = MathFactory::getAdapter(self::$_debug);
-        MathFactory::forceAdapter($adapter);
+        if (self::$_debug !== $value) {
+            self::$_debug = $value;
+            $adapter = MathFactory::getAdapter(self::$_debug);
+            MathFactory::forceAdapter($adapter);
+        }
     }
 }
