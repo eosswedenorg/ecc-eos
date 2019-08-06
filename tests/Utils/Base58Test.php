@@ -8,6 +8,11 @@ use ECCEOS\Utils\Base58InvalidCharacterException;
 
 class Base58Test extends TestCase
 {
+    public function invalidChars()
+    {
+        return [ [ '0' ],  [ 'I' ],  [ 'O' ],  [ 'l' ], [ '+' ] ];
+    }
+
     public function data()
     {
         return [
@@ -35,7 +40,7 @@ class Base58Test extends TestCase
     /**
      * @dataProvider data
      *
-     * param string $expected
+     * @param string $expected
      * @param string $input
      */
     public function testValidDecode(string $expected, string $input)
@@ -44,21 +49,16 @@ class Base58Test extends TestCase
         $this->assertTrue($expected->equals(Base58::decode($input)));
     }
 
-    public function testInvalidCharacterDecode()
+    /**
+     * @dataProvider invalidChars
+     *
+     * @param string $invalid_ch
+     * @throws Base58InvalidCharacterException
+     */
+    public function testInvalidCharacterDecode(string $invalid_ch)
     {
-        $this->expectNotToPerformAssertions();
+        $this->expectException(Base58InvalidCharacterException::class);
 
-        $invalid_chars = [ '0', 'I', 'O', 'l', '+' ];
-
-        foreach($invalid_chars as $ch) {
-            try {
-                Base58::decode('rG7DB' . $ch . 'WdWq9');
-
-                // Should never reach here.
-                $this->fail("Base58::decode did not throw exception when decoding the invalid character '$ch'");
-            } catch(Base58InvalidCharacterException $ex) {
-                continue;
-            }
-        }
+        Base58::decode('rG7DB' . $invalid_ch . 'WdWq9');
     }
 }
