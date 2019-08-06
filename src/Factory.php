@@ -35,6 +35,8 @@ class Factory
     }
 
     /**
+     * Create a SECP256K1 generator.
+     *
      * @return GeneratorPoint
      */
     static public function getSecp256k1() : GeneratorPoint
@@ -44,6 +46,8 @@ class Factory
     }
 
     /**
+     * Create a HMAC Random number generator
+     *
      * @param PrivateKeyInterface $key
      * @param GMP $hash
      * @return RandomNumberGeneratorInterface
@@ -62,6 +66,8 @@ class Factory
     }
 
     /**
+     * Create a sha256 signature hasher
+     *
      * @return HasherInterface
      */
     static public function getSignHasher() : HasherInterface
@@ -70,6 +76,8 @@ class Factory
     }
 
     /**
+     * Calculate a Signature hash from data.
+     *
      * @param $data
      * @return GMP
      */
