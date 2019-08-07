@@ -23,6 +23,14 @@ final class PrivateKeyTest extends TestCase
         ];
     }
 
+    public function testEmptyConstruct()
+    {
+        $expected = gmp_init(0, 10);
+        $pk = new PrivateKey();
+
+        $this->assertTrue(gmp_cmp($expected, $pk->getGMP()) === 0);
+    }
+
     public function testInvalidConstruct()
     {
         $this->expectException(InvalidArgumentException::class);
