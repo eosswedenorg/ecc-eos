@@ -72,16 +72,22 @@ final class PublicKeyTest extends TestCase
         $this->assertEquals($wif_key, $key->encode());
     }
 
-    public function testInvalidConstruct()
+    public function invalidData()
     {
-        $this->expectException(InvalidChecksumException::class);
-        $key = new PublicKey('EOS7H92pdv5Z2mY6FfgRSjDyfUYCRJooAhLDy9VCmThzf6djvn4uY');
+        return [
+            [ 'EOS7H92pdv5Z2mY6FfgRSjDyfUYCRJooAhLDy9VCmThzf6djvn4uY', InvalidChecksumException::class ],
+            [ 'PRE5RQvFcAmT4ukhFpzw1Xo7rNJz1V6ugKzBVvSE3ewrQLcmygyNS', InvalidArgumentException::class ],
+            [ 1337, InvalidArgumentException::class ]
+        ];
+    }
 
-        $this->expectException(InvalidArgumentException::class);
-        $key = new PublicKey('PRE5RQvFcAmT4ukhFpzw1Xo7rNJz1V6ugKzBVvSE3ewrQLcmygyNS');
-
-        $this->expectException(InvalidArgumentException::class);
-        $key = new PublicKey(1337);
+    /**
+     * @dataProvider invalidData
+     */
+    public function testInvalidConstruct($data, $exception)
+    {
+        $this->expectException($exception);
+        $key = new PublicKey($data);
     }
 
     /**
