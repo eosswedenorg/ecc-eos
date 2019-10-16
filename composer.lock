@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a5bd6a41c8509e338b2027b0a98f647",
+    "content-hash": "aa24d0afc5b9d56e0d61f656e4fd275f",
     "packages": [
         {
             "name": "bitwasp/buffertools",
-            "version": "v0.5.5",
+            "version": "v0.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bit-Wasp/buffertools-php.git",
-                "reference": "65abcc63a08dac0df56975c40127ea262edfbfd7"
+                "reference": "1c68cfd3137054f5f919eda662604380ec73c583"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bit-Wasp/buffertools-php/zipball/65abcc63a08dac0df56975c40127ea262edfbfd7",
-                "reference": "65abcc63a08dac0df56975c40127ea262edfbfd7",
+                "url": "https://api.github.com/repos/Bit-Wasp/buffertools-php/zipball/1c68cfd3137054f5f919eda662604380ec73c583",
+                "reference": "1c68cfd3137054f5f919eda662604380ec73c583",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 }
             ],
             "description": "Toolbox for working with binary and hex data. Similar to NodeJS Buffer.",
-            "time": "2018-11-11T16:40:42+00:00"
+            "time": "2019-07-04T14:56:01+00:00"
         },
         {
             "name": "fgrosse/phpasn1",
