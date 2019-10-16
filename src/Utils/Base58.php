@@ -67,7 +67,7 @@ class Base58
             }
             $return = gmp_add(gmp_mul($return, $_58), gmp_init($loc, 10));
         }
-        $binary = gmp_cmp($return, gmp_init(0)) === 0 ? '' : Buffer::int(gmp_strval($return, 10))->getBinary();
+        $binary = gmp_cmp($return, gmp_init(0)) === 0 ? '' : Buffer::gmp($return)->getBinary();
         for ($i = 0; $i < $length && $original[$i] === '1'; $i++) {
             $binary = "\x00" . $binary;
         }
