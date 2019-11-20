@@ -1,9 +1,9 @@
-name: PHP Composer
+name: Test
 
-on: [push]
+on: push
 
 jobs:
-  build:
+  phpunit:
 
     runs-on: ubuntu-latest
 
