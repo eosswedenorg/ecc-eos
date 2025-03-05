@@ -7,7 +7,7 @@ Elliptic-curve cryptography (ECC) is used by the EOS Blockchain to implement
 Public/Private key encryption. However EOS does abit more than just standard ECC.
 
 This library was written to address this. it's basicly a wrapper around a generic ECC implemention.
-[mdanter/ecc](https://packagist.org/packages/mdanter/ecc) to be more exact, however the API never
+[paragonie/ecc](https://packagist.org/packages/paragonie/ecc) to be more exact, however the API never
 exposes this so it could change at any time without the code using this library will have to change.
 
 This library exposes mainly 3 classes that you will deal with.
